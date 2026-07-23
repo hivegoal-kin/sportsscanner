@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InPlayGuru Clone - Live Sports Scanner</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- AG Grid -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community@30.2.1/styles/ag-grid.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community@30.2.1/styles/ag-theme-balham.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="pb-5 pb-md-0">
+
+    <div id="app">
+        <!-- Telegram Channel Bar -->
+        <div class="tg-channel-bar" role="region" aria-label="Updates channel">
+            <div class="container tg-channel-bar__inner">
+                <i class="fab fa-telegram-plane tg-channel-bar__icon"></i>
+                <p class="tg-channel-bar__text mb-0">
+                    <span class="d-none d-md-inline">Live updates &amp; important notices — first on Telegram.</span>
+                    <span class="d-md-none">Updates &amp; important notices — first on Telegram.</span>
+                </p>
+                <a href="#" target="_blank" rel="noopener" class="tg-channel-bar__join">
+                    Join <span class="d-none d-md-inline">@sports_channel</span>
+                </a>
+                <button type="button" class="tg-channel-bar__close" aria-label="Hide this message">×</button>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-md py-3 navbar-top navbar-light">
+            <div class="container">
+                <a href="#" class="navbar-brand mr-md-3 mx-auto d-md-inline d-flex justify-content-center">
+                    <img height="28px" alt="Logo" src="https://via.placeholder.com/120x28/1a73e8/ffffff?text=SportsScanner"
+                        class="invert-colors--off">
+                </a>
+                <div id="navbar-top-desktop" class="collapse navbar-collapse">
+                    <ul class="navbar-nav mr-auto">
+                        <!-- In-Play Button - Live Matches -->
+                        <li class="nav-item rounded mx-1" id="nav-inplay">
+                            <a href="#" class="nav-link px-3" data-filter="live">
+                                <i class="fa-solid fa-signal-stream"></i> In-Play
+                                <span class="badge badge-success pulse live-inplay-count" id="liveCount">0</span>
+                            </a>
+                        </li>
+                        <!-- All Button - All Matches -->
+                        <li class="nav-item rounded mx-1 active" id="nav-all">
+                            <a href="#" class="nav-link px-3" data-filter="all">
+                                <i class="fa-solid fa-list"></i> All
+                            </a>
+                        </li>
+                        <!-- Upcoming Button - Scheduled Matches -->
+                        <li class="nav-item rounded mx-1" id="nav-upcoming">
+                            <a href="#" class="nav-link px-3" data-filter="upcoming">
+                                <i class="fa-regular fa-calendar"></i> Upcoming
+                            </a>
+                        </li>
+                        <!-- Finished Button - Finished Matches -->
+                        <li class="nav-item rounded mx-1" id="nav-finished">
+                            <a href="#" class="nav-link px-3" data-filter="finished">
+                                <i class="fa-solid fa-flag-checkered"></i> Finished
+                            </a>
+                        </li>
+                        <!-- Help Dropdown (unchanged) -->
+                        <li class="nav-item dropdown rounded mx-1">
+                            <a id="support-dropdown" href="#" role="button" data-toggle="dropdown"
+                                class="nav-link px-3 dropdown-toggle">
+                                <i class="fa-regular fa-circle-question"></i> Help
+                            </a>
+                            <div aria-labelledby="support-dropdown" class="dropdown-menu dropdown-menu-right">
+                                <a href="#" class="dropdown-item"><i class="fas fa-question-circle"></i> FAQ</a>
+                                <a href="#" class="dropdown-item"><i class="fas fa-book"></i> User Guide</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto" style="align-items: baseline;">
+                        <li class="nav-item mx-1"><a href="#" class="nav-link px-3">Login</a></li>
+                        <li class="nav-item mx-1"><a href="#" class="btn btn-dark">Sign Up</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="py-2">
+            <div class="container top-content-wrapper"></div>
+            <div class="container-fluid">
+                <div>
+                    <div class="match-grid ag-theme-balham" style="background-color: transparent; overflow: visible;">
+
+                        <!-- Toolbar -->
+                        <div aria-label="Dashboard toolbar" role="toolbar" class="btn-toolbar d-flex flex-wrap">
+                            <!-- Layout Dropdown -->
+                            <div class="dropdown mr-2" id="layout-dropdown">
+                                <button type="button" class="btn btn-secondary dropdown-toggle">
+                                    <i class="fa-solid fa-expand"></i> Layout 1
+                                </button>
+                            </div>
+
+                            <!-- Stats Button -->
+                            <div aria-label="Stats" role="group" class="btn-group mr-2 mb-2">
+                                <button id="stats-modal-btn" aria-label="Stats" data-target="#statsModal"
+                                    data-toggle="modal" type="button" class="btn btn-secondary">
+                                    <i class="fa-solid fa-grid-2-plus"></i> Stats
+                                </button>
+                            </div>
+
+                            <!-- Add these buttons in the toolbar -->
+                            <div role="group" class="btn-group mr-2 mb-2">
+                                <button id="expandAll" type="button" class="btn btn-secondary">
+                                    <i class="fas fa-expand-all"></i> Expand All
+                                </button>
+                            </div>
+                            <div role="group" class="btn-group mr-2 mb-2">
+                                <button id="collapseAll" type="button" class="btn btn-secondary">
+                                    <i class="fas fa-compress-all"></i> Collapse All
+                                </button>
+                            </div>
+
+                            <!-- Shortcuts -->
+                            <div role="group" class="btn-group mr-2 mb-2 d-none d-md-inline-flex">
+                                <button id="shortcuts-btn" data-target="#inplayHelpModal" data-toggle="modal"
+                                    type="button" class="btn btn-secondary d-none d-md-inline">
+                                    <i class="fas fa-keyboard"></i><span class="d-none d-md-inline"> Shortcuts</span>
+                                </button>
+                            </div>
+
+                            <!-- Settings -->
+                            <div role="group" class="btn-group mr-2 mb-2 d-none d-md-inline-flex">
+                                <button type="button" class="btn btn-secondary d-none d-md-inline">
+                                    <i class="fas fa-cog"></i><span class="d-none d-md-inline"> Settings</span>
+                                </button>
+                            </div>
+
+                            <!-- Reset Dropdown -->
+                            <div role="group" class="btn-group mr-2 mb-2">
+                                <button id="dropdownMenuButton" aria-expanded="false" aria-haspopup="true"
+                                    data-toggle="dropdown" type="button" class="btn btn-secondary dropdown-toggle">
+                                    <i aria-hidden="true" class="fa fa-undo"></i> Reset
+                                </button>
+                                <div aria-labelledby="dropdownMenuButton" class="dropdown-menu">
+                                    <button type="button" class="dropdown-item py-2"><i class="fas fa-filter"></i> Reset
+                                        Filters</button>
+                                    <button type="button" class="dropdown-item py-2"><i
+                                            class="fas fa-sort-amount-down"></i> Reset Sorting</button>
+                                    <button type="button" class="dropdown-item py-2"><i class="fas fa-columns"></i>
+                                        Reset Columns</button>
+                                    <button type="button" class="dropdown-item py-2"><i class="fas fa-table"></i> Reset
+                                        Everything</button>
+                                </div>
+                            </div>
+
+                            <!-- Group By League Button -->
+                            <div role="group" class="btn-group mr-2 mb-2">
+                                <button id="toggleGrouping" type="button" class="btn btn-secondary active">
+                                    <i class="fas fa-layer-group"></i> Group by League
+                                </button>
+                            </div>
+
+                            <!-- Pin Group -->
+                            <div id="btn-group-pin" role="group" class="btn-group mr-2 mb-2">
+                                <button type="button" class="btn btn-secondary"><i class="fas fa-thumbtack"></i>
+                                    Pin</button>
+                                <button disabled aria-expanded="false" aria-haspopup="true" data-toggle="dropdown"
+                                    type="button"
+                                    class="btn btn-secondary dropdown-toggle dropdown-toggle-split px-3 px-md-2">
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                            </div>
+
+                            <!-- Hide Group -->
+                            <div role="group" class="btn-group mr-2 mb-2">
+                                <button aria-label="Hide" type="button" class="btn btn-secondary"><i
+                                        class="fas fa-eye-slash"></i> Hide</button>
+                                <button aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button"
+                                    class="btn btn-secondary dropdown-toggle dropdown-toggle-split px-3 px-md-2"
+                                    disabled>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                            </div>
+
+                            <div class="w-100 d-block d-md-none"></div>
+
+                            <!-- Filter -->
+                            <div role="group" class="ffn btn-group mr-2 mb-2">
+                                <button type="button" title="Why these matches? Open the filter funnel"
+                                    class="btn ffn__btn btn-secondary">
+                                    <i class="fas fa-filter"></i>
+                                    <span class="ffn__summary"><strong id="filterCount">0</strong><span
+                                            class="ffn__of">/ <span id="totalCount">0</span></span></span>
+                                </button>
+                            </div>
+
+                            <!-- Temporal Window -->
+                            <div id="btn-group-temporal-window" aria-label="Minutes" role="group"
+                                class="btn-group btn-group-toggle mr-2 mb-2">
+                                <label class="btn btn-secondary active">
+                                    <i class="fa-regular fa-timeline-arrow"></i>
+                                    <input id="statTemporalWindowOption_0" autocomplete="off" name="statTemporalWindow"
+                                        type="radio" value="0"> All Stats
+                                </label>
+                                <label class="btn btn-secondary">
+                                    <input id="statTemporalWindowOption_5" autocomplete="off" name="statTemporalWindow"
+                                        type="radio" value="5"> 5<span class="d-md-none">M</span><span
+                                        class="d-none d-md-inline"> Minutes</span>
+                                </label>
+                                <label class="btn btn-secondary">
+                                    <input id="statTemporalWindowOption_10" autocomplete="off" name="statTemporalWindow"
+                                        type="radio" value="10"> 10<span class="d-md-none">M</span><span
+                                        class="d-none d-md-inline"> Minutes</span>
+                                </label>
+                                <label class="btn btn-secondary">
+                                    <input id="statTemporalWindowOption_15" autocomplete="off" name="statTemporalWindow"
+                                        type="radio" value="15"> 15<span class="d-md-none">M</span><span
+                                        class="d-none d-md-inline"> Minutes</span>
+                                </label>
+                                <label class="btn btn-secondary">
+                                    <input id="statTemporalWindowOption_20" autocomplete="off" name="statTemporalWindow"
+                                        type="radio" value="20"> 20<span class="d-md-none">M</span><span
+                                        class="d-none d-md-inline"> Minutes</span>
+                                </label>
+                            </div>
+
+                            <!-- Help -->
+                            <div role="group" class="btn-group mb-2 d-none d-md-inline-flex">
+                                <button type="button" title="Replay the interactive tour anytime"
+                                    class="btn btn-secondary d-none d-md-inline">
+                                    <i class="far fa-question-circle"></i> Help
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Date Picker -->
+                        <div class="btn-group mr-2 mb-2" style="display: flex; align-items: center;">
+                            <input type="date" class="form-control form-control-sm" id="datePicker"
+                                style="width: 160px; font-size: 13px; height: 34px; border-radius: 4px 0 0 4px; border-right: none;">
+                            <button class="btn btn-secondary" id="fetchDateBtn"
+                                style="border-radius: 0 4px 4px 0; height: 34px; padding: 0 14px;">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                        
+                        <!-- Date Range Modal -->
+                        <div class="modal fade" id="dateRangeModal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-sm" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title"><i class="fas fa-calendar-alt"></i> Select Date Range</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label>From Date</label>
+                                            <input type="date" class="form-control" id="dateFrom">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>To Date</label>
+                                            <input type="date" class="form-control" id="dateTo">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Status Filter</label>
+                                            <select class="form-control" id="statusFilter">
+                                                <option value="all">All</option>
+                                                <option value="inprogress">Live</option>
+                                                <option value="finished">Finished</option>
+                                                <option value="notstarted">Upcoming</option>
+                                            </select>
+                                        </div>
+                                        <button class="btn btn-primary btn-block" id="applyDateRange">
+                                            <i class="fas fa-search"></i> Fetch Matches
+                                        </button>
+                                        <hr>
+                                        <div class="d-flex justify-content-between flex-wrap">
+                                            <button class="btn btn-outline-secondary btn-sm mb-1" data-date="today">Today</button>
+                                            <button class="btn btn-outline-secondary btn-sm mb-1" data-date="yesterday">Yesterday</button>
+                                            <button class="btn btn-outline-secondary btn-sm mb-1" data-date="week">This Week</button>
+                                            <button class="btn btn-outline-secondary btn-sm mb-1" data-date="month">This Month</button>
+                                            <button class="btn btn-outline-secondary btn-sm mb-1" data-date="all">All Time</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AG Grid Container -->
+                        <div id="inplay-grid" class="ag-theme-balham" style="width: 100%; height: 600px;"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Stats Modal -->
+        <div id="statsModal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><i class="fa-solid fa-grid-2-plus"></i> Stats</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Choose the columns your scanner shows — changes apply instantly</p>
+                        <div class="row" id="statsColumns">
+                            <!-- Will be populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="container pt-4 pt-md-4 my-md-4 border-top text-justify">
+            <div class="row">
+                <div class="col-12 col-md-5 mb-4 mb-md-0">
+                    <img src="https://via.placeholder.com/120x28/1a73e8/ffffff?text=SportsScanner" alt="Logo"
+                        height="25px">
+                    <small class="d-block mt-3 text-muted">© 2024 SportsScanner. All Rights Reserved.</small>
+                    <div class="my-3">
+                        <span class="badge badge-status px-2 py-1">
+                            <i class="fas fa-circle status-indicator live-dot mr-1"></i>
+                            All Systems Operational
+                        </span>
+                    </div>
+                    <p class="mt-2 text-muted font-weight-light" style="font-size: 80%;">
+                        Real-time sports scanner delivering live scores and in-play stats across multiple leagues
+                        worldwide.
+                    </p>
+                    <div class="row mt-2">
+                        <div class="col-1 mr-1"><a href="#" class="text-muted h4"><i
+                                    class="fab fa-telegram-plane"></i></a></div>
+                        <div class="col-1 mr-1"><a href="#" class="text-muted h4"><i class="fab fa-youtube"></i></a>
+                        </div>
+                        <div class="col-1"><a href="#" class="text-muted h4"><i class="fa-brands fa-x-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 offset-md-1">
+                    <p class="h6 font-weight-bold text-muted mb-3">SportsScanner</p>
+                    <ul class="list-unstyled text-small">
+                        <li class="py-1"><a href="#" class="text-muted">About</a></li>
+                        <li class="py-1"><a href="#" class="text-muted">Contact Us</a></li>
+                        <li class="py-1"><a href="#" class="text-muted">Terms &amp; Conditions</a></li>
+                        <li class="py-1"><a href="#" class="text-muted">Privacy Policy</a></li>
+                        <li class="py-1"><a href="#" class="text-muted">Cookies</a></li>
+                        <li class="py-1"><a href="#" class="text-muted">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-3">
+                    <p class="h6 font-weight-bold text-muted mb-3">Resources</p>
+                    <ul class="list-unstyled text-small">
+                        <li class="py-1"><a href="#" class="text-muted">FAQ</a></li>
+                        <li class="py-1"><a href="#" class="text-muted">User Guide</a></li>
+                        <li class="py-1"><a href="#" class="text-muted">Changelog</a></li>
+                        <li class="py-1"><a href="#" class="text-muted">Odds Converter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-12 text-justify mb-3 mb-md-0">
+                    <p class="mt-2 text-muted font-weight-light" style="font-size: 80%;">
+                        SportsScanner is a sports statistical analysis platform and does not provide or facilitate any
+                        form of betting or wagering.
+                        All content provided through this platform is for informational purposes only.
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ag-grid-community@30.2.1/dist/ag-grid-community.min.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>

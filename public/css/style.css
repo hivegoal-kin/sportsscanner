@@ -1,0 +1,1087 @@
+/* ============================================
+   TELEGRAM CHANNEL BAR
+   ============================================ */
+.tg-channel-bar {
+    background: #1a73e8;
+    color: white;
+    padding: 8px 0;
+    font-size: 14px;
+    position: relative;
+}
+
+.tg-channel-bar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.tg-channel-bar__icon {
+    font-size: 20px;
+}
+
+.tg-channel-bar__text {
+    font-size: 13px;
+}
+
+.tg-channel-bar__join {
+    color: white;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 4px 14px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.tg-channel-bar__join:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.3);
+    text-decoration: none;
+}
+
+.tg-channel-bar__close {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 0 8px;
+    opacity: 0.7;
+}
+
+.tg-channel-bar__close:hover {
+    opacity: 1;
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+.navbar-top {
+    background: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.navbar-top .nav-item.active {
+    background: #e8f0fe;
+}
+
+.navbar-top .nav-item.active .nav-link {
+    color: #1a73e8;
+}
+
+.navbar-top .nav-link {
+    color: #5f6368;
+    font-weight: 500;
+}
+
+.navbar-top .nav-link:hover {
+    color: #1a73e8;
+}
+
+/* ============================================
+   BADGE PULSE
+   ============================================ */
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.live-dot {
+    color: #34a853;
+    font-size: 10px;
+    animation: pulse 1.5s infinite;
+}
+
+/* ============================================
+   TOOLBAR
+   ============================================ */
+.btn-toolbar .btn {
+    font-size: 13px;
+    padding: 6px 14px;
+}
+
+.btn-toolbar .btn-secondary {
+    background: #f8f9fa;
+    border-color: #dadce0;
+    color: #3c4043;
+}
+
+.btn-toolbar .btn-secondary:hover {
+    background: #f1f3f4;
+    border-color: #dadce0;
+}
+
+.btn-toolbar .btn-secondary.active {
+    background: #e8f0fe;
+    border-color: #1a73e8;
+    color: #1a73e8;
+}
+
+/* ============================================
+   AG GRID CUSTOM
+   ============================================ */
+.ag-theme-balham {
+    --ag-header-height: 80px;
+}
+
+.ag-theme-balham .ag-header {
+    background: #f8f9fa;
+    border-bottom: 1px solid #dadce0;
+}
+
+.ag-theme-balham .ag-header-cell {
+    font-size: 12px;
+    font-weight: 600;
+    color: #5f6368;
+    padding: 4px 0;
+}
+
+.ag-theme-balham .ag-row {
+    border-bottom: 1px solid #f1f3f4;
+    cursor: pointer;
+}
+
+.ag-theme-balham .ag-row-even {
+    background-color: #ffffff;
+}
+
+.ag-theme-balham .ag-row-odd {
+    background-color: #fafbfc;
+}
+
+.ag-theme-balham .ag-row:hover {
+    background-color: #f1f3f4 !important;
+}
+
+.ag-theme-balham .ag-row-selected {
+    background-color: #e8f0fe !important;
+}
+
+/* ============================================
+   AG GRID CONTAINER
+   ============================================ */
+#inplay-grid {
+    width: 100%;
+    min-height: 500px;
+    height: 600px;
+}
+
+/* ============================================
+   CELL CONTAINERS - LEFT ALIGNED
+   ============================================ */
+.cell-container-dual-row {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    height: 100%;
+    padding: 2px 0;
+    gap: 1px;
+    width: 100%;
+    text-align: left !important;
+}
+
+.cell-row {
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    font-size: 13px;
+    line-height: 1.3;
+    width: 100%;
+    text-align: left !important;
+}
+
+.cell-row-double {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    width: 100%;
+}
+
+/* ============================================
+   MATCH COLUMN - TEAM NAMES
+   ============================================ */
+.team-home {
+    font-weight: 600;
+    color: #3c4043;
+    font-size: 13px;
+    text-align: left !important;
+    padding-left: 0px !important;
+    width: 100%;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+}
+
+.team-away {
+    font-weight: 400;
+    color: #3c4043;
+    font-size: 13px;
+    text-align: left !important;
+    padding-left: 0px !important;
+    width: 100%;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+}
+
+/* ============================================
+   SCORE COLUMN - ONLY HIGHER SCORE BOLD
+   ============================================ */
+.score-home {
+    font-weight: 400;
+    color: #3c4043;
+    font-size: 13px;
+    text-align: left !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+    width: 100%;
+}
+
+.score-home.bold {
+    font-weight: 700;
+}
+
+.score-away {
+    font-weight: 400;
+    color: #3c4043;
+    font-size: 13px;
+    text-align: left !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+    width: 100%;
+}
+
+.score-away.bold {
+    font-weight: 700;
+}
+
+/* ============================================
+   HT SCORE COLUMN
+   ============================================ */
+.ht-home,
+.ht-away {
+    font-weight: 600;
+    color: #5f6368;
+    font-size: 13px;
+    text-align: left !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+    width: 100%;
+}
+
+/* ============================================
+   TIMER COLUMN
+   ============================================ */
+.timer-value {
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    text-align: left !important;
+    width: 100%;
+}
+
+/* ============================================
+   STAT COLUMNS - HIGHER FIGURE GETS BLUE
+   ============================================ */
+.cell-row.stat-lead {
+    font-weight: 700;
+    color: #1a73e8;
+}
+
+.cell-row.stat-zero {
+    color: #9aa0a6;
+}
+
+.cell-row.stat-empty {
+    color: #dadce0;
+}
+
+.cell-row.threshold-1 {
+    color: #e37400;
+}
+
+.cell-row.threshold-2 {
+    color: #d93025;
+}
+
+.suffix-percentage {
+    font-size: 10px;
+    margin-left: 1px;
+    color: #9aa0a6;
+}
+
+/* ============================================
+   LEAGUE GROUP HEADER - Clean, only text highlighted
+   ============================================ */
+.league-group-header-full {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 13px;
+    color: #1a73e8;
+    padding: 6px 12px;
+    cursor: pointer;
+    user-select: none;
+    width: 100%;
+    min-height: 36px;
+    transition: color 0.2s;
+    box-sizing: border-box;
+}
+
+.league-group-header-full:hover {
+    color: #1557b0;
+}
+
+.league-group-header-full i {
+    font-size: 14px;
+    color: #1a73e8;
+    transition: transform 0.3s;
+    margin-right: 4px;
+}
+
+.league-group-header-full .league-count {
+    background: #e8f0fe;
+    color: #1a73e8;
+    font-size: 10px;
+    padding: 1px 10px;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+/* ============================================
+   LEAGUE GROUP SPACER - for other columns
+   ============================================ */
+.league-group-spacer {
+    height: 100%;
+    min-height: 10px;
+}
+
+/* ============================================
+   AG GRID GROUP ROW - No background, no borders
+   ============================================ */
+.ag-theme-balham .ag-row-group {
+    background: transparent !important;
+    border-bottom: none !important;
+    border-top: none !important;
+    height: 38px !important;
+    width: 100% !important;
+}
+
+.ag-theme-balham .ag-row-group .ag-cell {
+    display: flex !important;
+    align-items: center !important;
+    padding: 0 !important;
+    width: 100% !important;
+    justify-content: flex-start !important;
+}
+
+/* ============================================
+   FORCE LEFT ALIGNMENT ON ALL CELLS
+   ============================================ */
+.ag-theme-balham .ag-cell {
+    text-align: left !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    padding-left: 8px !important;
+}
+
+/* ============================================
+   HORIZONTAL SCROLL
+   ============================================ */
+.ag-theme-balham .ag-body-viewport {
+    overflow-x: auto !important;
+}
+
+.ag-theme-balham .ag-center-cols-viewport {
+    overflow-x: auto !important;
+    overflow-y: auto !important;
+}
+
+/* Custom scrollbar styling */
+.ag-theme-balham .ag-body-viewport::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+}
+
+.ag-theme-balham .ag-body-viewport::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.ag-theme-balham .ag-body-viewport::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.ag-theme-balham .ag-body-viewport::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Pinned columns shadow on scroll */
+.ag-theme-balham .ag-pinned-left-cols-container {
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.08);
+    z-index: 1;
+}
+
+/* ============================================
+   OTHER GRID ELEMENTS
+   ============================================ */
+.lock-icon {
+    color: #9aa0a6;
+    font-size: 14px;
+}
+
+.selectable-text {
+    font-size: 13px;
+    color: #3c4043;
+    padding: 0 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.grid-header-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.match-grid-stacked-controls-headers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.row-controls {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.header-filter-control {
+    height: 14px;
+}
+
+.header-sorting-control {
+    height: 14px;
+}
+
+.row-label {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* ============================================
+   STATUS BADGES
+   ============================================ */
+.status-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.status-live {
+    background: #e6f4ea;
+    color: #1e7e34;
+}
+
+.status-ft {
+    background: #f1f3f4;
+    color: #5f6368;
+}
+
+.status-ht {
+    background: #fff3cd;
+    color: #856404;
+}
+
+/* ============================================
+   STATS MODAL TOGGLE
+   ============================================ */
+.scm-toggle--on .scm-toggle__track {
+    background: #1a73e8 !important;
+}
+
+.scm-toggle__track {
+    width: 40px;
+    height: 22px;
+    border-radius: 11px;
+    background: #dadce0;
+    display: inline-block;
+    position: relative;
+    transition: background 0.3s;
+}
+
+.scm-toggle__knob {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: white;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.3s;
+}
+
+.scm-toggle--on .scm-toggle__knob {
+    transform: translateX(18px);
+}
+
+/* ============================================
+   VALUE UPDATED ANIMATION
+   ============================================ */
+.value-updated {
+    animation: flashUpdate 0.8s ease;
+    font-weight: 700 !important;
+}
+
+@keyframes flashUpdate {
+    0% {
+        background-color: #ffeb3b;
+        color: #000;
+        transform: scale(1.1);
+    }
+
+    30% {
+        background-color: #ffeb3b;
+        color: #000;
+        transform: scale(1.1);
+    }
+
+    100% {
+        background-color: transparent;
+        color: inherit;
+        transform: scale(1);
+    }
+}
+
+.timer-value.value-updated {
+    color: #ff6b00 !important;
+    font-weight: 700 !important;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer a {
+    color: #5f6368;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #1a73e8;
+    text-decoration: underline;
+}
+
+.badge-status {
+    background: #e6f4ea;
+    color: #1e7e34;
+}
+
+/* ============================================
+   RESPONSIVE - MOBILE
+   ============================================ */
+@media (max-width: 768px) {
+    .tg-channel-bar__text {
+        font-size: 12px;
+    }
+
+    .btn-toolbar .btn {
+        font-size: 12px;
+        padding: 4px 10px;
+    }
+
+    .ag-theme-balham .ag-header-cell {
+        font-size: 9px !important;
+        padding: 2px 1px !important;
+    }
+
+    .ag-theme-balham .ag-cell {
+        font-size: 10px !important;
+        padding: 0 2px !important;
+    }
+
+    .cell-row {
+        font-size: 10px !important;
+        line-height: 1.2 !important;
+    }
+
+    .team-home,
+    .team-away {
+        font-size: 11px !important;
+    }
+
+    .ht-home,
+    .ht-away {
+        font-size: 11px !important;
+    }
+
+    .score-home,
+    .score-away {
+        font-size: 11px !important;
+    }
+
+    .suffix-percentage {
+        font-size: 8px !important;
+    }
+
+    .selectable-text {
+        font-size: 11px;
+    }
+
+    /* Grid sizing */
+    #inplay-grid {
+        height: 450px;
+        min-height: 350px;
+    }
+
+    .ag-theme-balham .ag-header-cell,
+    .ag-theme-balham .ag-cell {
+        min-width: 30px !important;
+    }
+
+    .ag-theme-balham .ag-row {
+        min-height: 38px !important;
+        height: 38px !important;
+    }
+
+    .ag-theme-balham .ag-row-group {
+        height: 34px !important;
+    }
+
+    .ag-theme-balham .ag-row-group .ag-cell {
+        font-size: 12px !important;
+    }
+
+    /* Horizontal scroll on mobile */
+    .ag-theme-balham .ag-body-viewport {
+        overflow-x: auto !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .ag-theme-balham .ag-body-viewport::-webkit-scrollbar {
+        height: 6px;
+        width: 6px;
+    }
+
+    .ag-theme-balham .ag-body-viewport::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 3px;
+    }
+
+    .ag-theme-balham .ag-body-viewport::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 3px;
+    }
+
+    .ag-theme-balham .ag-body-viewport::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    /* Scroll indicator */
+    #inplay-grid::after {
+        content: '← Scroll →';
+        display: block;
+        text-align: center;
+        font-size: 11px;
+        color: #999;
+        padding: 4px 0;
+        background: #f8f9fa;
+        border-top: 1px solid #eee;
+    }
+
+    /* Stats toggle labels */
+    .custom-control-label {
+        font-size: 12px !important;
+    }
+
+    .modal-body .col-6 {
+        padding: 0 6px;
+    }
+}
+
+/* ============================================
+   RESPONSIVE - TABLET
+   ============================================ */
+@media (min-width: 769px) and (max-width: 1024px) {
+    #inplay-grid {
+        height: 500px;
+    }
+
+    .ag-theme-balham .ag-header-cell {
+        font-size: 10px !important;
+    }
+
+    .ag-theme-balham .ag-cell {
+        font-size: 11px !important;
+    }
+}
+
+/* ============================================
+   RESPONSIVE - DESKTOP LARGE
+   ============================================ */
+@media (min-width: 1025px) {
+    #inplay-grid {
+        height: 600px;
+    }
+}
+
+/* ============================================
+   RESPONSIVE - EXTRA SMALL
+   ============================================ */
+@media (max-width: 576px) {
+    .custom-control-label {
+        font-size: 12px !important;
+    }
+
+    .modal-body .col-6 {
+        padding: 0 6px;
+    }
+}
+
+/* Simple Date Picker */
+#datePicker {
+    border: 1px solid #dadce0;
+    background: #f8f9fa;
+    color: #3c4043;
+    padding: 4px 10px;
+}
+
+#datePicker:focus {
+    outline: none;
+    border-color: #1a73e8;
+    background: white;
+}
+
+#fetchDateBtn {
+    background: #f8f9fa;
+    border: 1px solid #dadce0;
+    border-left: none;
+    color: #3c4043;
+    padding: 4px 14px;
+}
+
+#fetchDateBtn:hover {
+    background: #e8f0fe;
+    border-color: #1a73e8;
+    color: #1a73e8;
+}
+
+/* Navigation filter buttons */
+.navbar-nav .nav-item.active {
+    background: #e8f0fe;
+    border-radius: 6px;
+}
+
+.navbar-nav .nav-item.active .nav-link {
+    color: #1a73e8 !important;
+}
+
+.navbar-nav .nav-item .nav-link {
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+    color: #1a73e8;
+}
+
+.navbar-nav .nav-item:not(.active) .nav-link {
+    color: #5f6368;
+}
+
+/* ============================================
+   MOMENTUM CHART - Full Bar with Marker
+   ============================================ */
+.momentum-chart-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 2px 0;
+    position: relative;
+}
+
+.momentum-chart {
+    display: flex;
+    flex-direction: column;
+    height: 70px;
+    width: 100%;
+    position: relative;
+}
+
+.momentum-bars-wrapper {
+    position: relative;
+    flex: 1;
+    height: 55px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.momentum-bars {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: stretch;
+    position: relative;
+}
+
+.momentum-bar-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-width: 2px;
+    position: relative;
+    transition: opacity 0.5s ease;
+}
+
+.momentum-bar-home {
+    position: absolute;
+    bottom: 50%;
+    left: 0;
+    right: 0;
+    min-height: 1px;
+    transition: height 0.5s ease, background 0.3s ease;
+    border-radius: 2px 2px 0 0;
+    height: 0%;
+    z-index: 2;
+}
+
+.momentum-bar-away {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    min-height: 1px;
+    transition: height 0.5s ease, background 0.3s ease;
+    border-radius: 0 0 2px 2px;
+    height: 0%;
+    z-index: 2;
+}
+
+.momentum-center-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #9aa0a6;
+    transform: translateY(-50%);
+    z-index: 3;
+    opacity: 0.6;
+}
+
+/* Current minute marker */
+.momentum-marker {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    z-index: 5;
+    pointer-events: none;
+    transition: left 0.5s ease;
+}
+
+.momentum-marker-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background: #5f6368;
+    transform: translateX(-50%);
+    opacity: 0.7;
+}
+
+.momentum-marker-label {
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 6px;
+    font-weight: 700;
+    color: #5f6368;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 0 4px;
+    border-radius: 2px;
+    white-space: nowrap;
+}
+
+.momentum-minutes {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2px;
+    margin-top: 2px;
+}
+
+.momentum-minute-label {
+    font-size: 6px;
+    color: #9aa0a6;
+    font-weight: 500;
+}
+
+.momentum-current {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    margin-top: 2px;
+}
+
+.momentum-home-value {
+    color: #1a73e8;
+}
+
+.momentum-away-value {
+    color: #ea4335;
+}
+
+.momentum-center-label {
+    color: #9aa0a6;
+    font-weight: 300;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .momentum-chart {
+        height: 55px;
+    }
+
+    .momentum-bars-wrapper {
+        height: 42px;
+    }
+
+    .momentum-minute-label {
+        font-size: 5px;
+    }
+
+    .momentum-current {
+        font-size: 8px;
+    }
+
+    .momentum-bar-column {
+        min-width: 1px;
+    }
+
+    .momentum-marker-label {
+        font-size: 5px;
+        top: -2px;
+    }
+}
+
+/* ============================================
+   MOMENTUM SPARKLINE - Simple Line Chart
+   ============================================ */
+.momentum-sparkline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 2px 0;
+}
+
+.momentum-sparkline svg {
+    display: block;
+    width: 100%;
+    height: 45px;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .momentum-sparkline svg {
+        height: 35px;
+    }
+}
+
+/* ============================================
+   NO MATCHES OVERLAY
+   ============================================ */
+.no-matches-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.no-matches-overlay i {
+    display: block;
+}
+
+.no-matches-overlay h5 {
+    color: #3c4043;
+}
+
+.no-matches-overlay p {
+    color: #9aa0a6;
+}
+/* Center all numeric/stat columns */
+.ag-theme-balham .ag-cell {
+    text-align: center !important;
+    justify-content: center !important;
+}
+
+/* BUT keep League and Match columns left-aligned */
+.ag-theme-balham .ag-cell[col-id="league"],
+.ag-theme-balham .ag-cell[col-id="match"] {
+    text-align: left !important;
+    justify-content: flex-start !important;
+}
+
+/* Keep team names left-aligned */
+.team-home,
+.team-away {
+    text-align: left !important;
+    justify-content: flex-start !important;
+}
+
+/* Keep league group header left-aligned */
+.league-group-header-full {
+    text-align: left !important;
+    justify-content: flex-start !important;
+}
+/* Center ALL column headers */
+.ag-theme-balham .ag-header-cell-label {
+    justify-content: center !important;
+    text-align: center !important;
+}

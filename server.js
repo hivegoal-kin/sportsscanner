@@ -1,10 +1,9 @@
-const PORT = process.env.PORT || 3000;
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;  // ← ONLY ONE declaration
 const API_TOKEN = '52f66e8147f677a44f058067e7ffde6e6e7696a5';
 const BASE_URL = 'https://sports.bzzoiro.com/api/v2';
 
